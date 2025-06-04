@@ -7,7 +7,7 @@ const ContactList = () => {
     const [contacts, setContacts] = useState([]);
 
 useEffect(() => {
-  fetch("http://localhost:5000/users")
+  fetch("https://the-app-backend-2279.onrender.com/users")
     .then((res) => res.json())
     .then((data) => {
       const formattedData = data.map(user => ({
@@ -56,7 +56,7 @@ useEffect(() => {
 const handleBlock = async () => {
   const userId = localStorage.getItem("userId");
   try {
-    const response = await fetch("http://localhost:5000/block-users", {
+    const response = await fetch("https://the-app-backend-2279.onrender.com/block-users", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({userId, userIds: selectedContacts }),
@@ -84,7 +84,7 @@ const handleBlock = async () => {
 
 const handleUnblock = async () => {
   try {
-    const response = await fetch("http://localhost:5000/unblock-users", {
+    const response = await fetch("https://the-app-backend-2279.onrender.com/unblock-users", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userIds: selectedContacts }),
@@ -110,7 +110,7 @@ const handleUnblock = async () => {
 
 const handleDelete = async () => {
   try {
-    const response = await fetch("http://localhost:5000/delete-users", {
+    const response = await fetch("https://the-app-backend-2279.onrender.com/delete-users", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
