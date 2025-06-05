@@ -83,11 +83,12 @@ const handleBlock = async () => {
 };
 
 const handleUnblock = async () => {
+  const userId = localStorage.getItem("userId");
   try {
     const response = await fetch("https://the-app-backend-2279.onrender.com/unblock-users", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userIds: selectedContacts }),
+      body: JSON.stringify({userId, userIds: selectedContacts }),
     });
     if (response.status === 403) {
       alert("Your account is blocked. Redirecting to login.");
@@ -109,13 +110,14 @@ const handleUnblock = async () => {
 };
 
 const handleDelete = async () => {
+  const userId = localStorage.getItem("userId");
   try {
     const response = await fetch("https://the-app-backend-2279.onrender.com/delete-users", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userIds: selectedContacts }),
+      body: JSON.stringify({userId, userIds: selectedContacts }),
     });
     if (response.status === 403) {
       alert("Your account is blocked. Redirecting to login.");
