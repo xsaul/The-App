@@ -18,8 +18,9 @@ const SignUpForm = () => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, email, password }),
   });
-
-  if (response.ok) {
+    const data = await response.json();
+   if (response.ok && data.userId) {
+      localStorage.setItem("userId", data.userId);
       navigate("/table");}};
   return (
     <form onSubmit={handleSignUp}>
